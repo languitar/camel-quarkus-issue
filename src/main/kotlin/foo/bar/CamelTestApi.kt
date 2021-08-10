@@ -6,6 +6,7 @@ import org.apache.camel.builder.RouteBuilder
 import org.apache.camel.component.jackson.ListJacksonDataFormat
 import org.apache.camel.model.SagaPropagation
 import org.apache.camel.saga.InMemorySagaService
+import org.apache.camel.service.lra.LRASagaService
 import java.time.Duration
 import java.util.*
 import javax.enterprise.context.ApplicationScoped
@@ -39,8 +40,7 @@ class TestSaga : RouteBuilder {
     constructor(context: CamelContext?) : super(context)
 
     override fun configure() {
-//        context.addService(LRASagaService())
-        context.addService(InMemorySagaService())
+        context.addService(LRASagaService())
 
         from("direct:test-saga")
             .saga()
